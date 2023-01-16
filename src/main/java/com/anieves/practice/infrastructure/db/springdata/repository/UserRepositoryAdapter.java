@@ -23,9 +23,9 @@ public class UserRepositoryAdapter implements UserGateway {
 
     @Override
     public User save(User user) {
-        String sqlSaveUser = "INSERT INTO user \n" +
+        String sqlSaveUser = "INSERT INTO public.user \n" +
                 "(id, name, address) \n " +
-                " VALUES (?, ?, ?) ";
+                " VALUES (?, ?, ?); ";
         try {
             jdbcTemplate = new JdbcTemplate(dataSource);
             jdbcTemplate.update(sqlSaveUser, user.getId(), user.getName(), user.getAddress());
