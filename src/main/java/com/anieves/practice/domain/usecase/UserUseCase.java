@@ -22,4 +22,9 @@ public class UserUseCase {
     }
 
 
+    public void deleteUser(Long id) {
+        userGateway.deleteUser(String.valueOf(id));
+    }
+
+
 }
