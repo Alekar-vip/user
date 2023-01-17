@@ -27,9 +27,4 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers() throws Exception {
         return new ResponseEntity<>(userService.searchUser(), HttpStatus.OK);
     }
-
-
-
-
-
 }

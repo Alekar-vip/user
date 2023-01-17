@@ -7,6 +7,8 @@ import com.anieves.practice.infrastructure.config.Exceptions.UseCaseExceptions;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Slf4j
 public class ProductUseCase {
@@ -22,6 +24,22 @@ public class ProductUseCase {
             }
         }catch (DaoExceptions e){
            throw new UseCaseExceptions(e);
+        }
+    }
+
+    public void delete(ProductDto productDto) throws UseCaseExceptions{
+        try{
+            productGateway.delete(productDto);
+        }catch (DaoExceptions daoExceptions){
+            throw new UseCaseExceptions(daoExceptions);
+        }
+    }
+
+    public List<ProductDto> listProductos(ProductDto productDto) throws UseCaseExceptions{
+        try{
+            return productGateway.getAll();
+        }catch (DaoExceptions daoExceptions){
+            throw new UseCaseExceptions(daoExceptions);
         }
     }
 }
