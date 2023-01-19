@@ -9,4 +9,6 @@ public interface UserGateway {
     User save(User user);
 
     List<User> searchUser() throws Exception;
+
+    void deleteUser(String id);
 }

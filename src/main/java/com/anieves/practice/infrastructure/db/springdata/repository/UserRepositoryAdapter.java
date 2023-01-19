@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -44,6 +45,18 @@ public class UserRepositoryAdapter implements UserGateway {
         } catch (DataAccessException ex) {
             ex.printStackTrace();
             throw new RuntimeException("error al consultar");
+        }
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(String id) {
+        String deleteUser = "DELETE FROM public.user WHERE id = ? ;";
+        try {
+            jdbcTemplate = new JdbcTemplate(dataSource);
+            jdbcTemplate.update(deleteUser, id);
+        } catch (DataAccessException e) {
+            e.printStackTrace();
         }
     }
 }

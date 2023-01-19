@@ -16,6 +16,7 @@ public class ProductUseCase {
 
     public void saveProduct(ProductDto productDto) throws UseCaseExceptions{
         try{
+
             ProductDto productfound = productGateway.getbyid(productDto);
             if(productfound != null){
                 productGateway.update(productDto);
